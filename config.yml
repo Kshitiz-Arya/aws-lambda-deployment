@@ -1,0 +1,3 @@
+regions : ['ap-south-1', 'ap-northeast-1', 'ap-northeast-2']  # Regions where lambda function is to be deployed
+code_path: ['~/GitHub/lambda', 'code2']  # Path of the lambda function code
+lambda: [{name: 'distance-lambda', runtime: 'python3.8', handler: 'main.lambda_handler', role: 'arn:aws:iam::5445485151215:role/my-lambda-function-IAMRole-DFA5SDFA244F5A'}, {name: 'lambda12', runtime: 'python3.8', handler: 'main.lambda_handler1',role: 'arn:aws:iam::215454151541:role/my-lambda-function-IAMRole-x055fds0x'}]

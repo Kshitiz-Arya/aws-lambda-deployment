@@ -1,0 +1,14 @@
+- name: remove any old zip
+  file:
+    path: build/{{ item.name }}.zip
+    state: absent
+  with_items:
+    - '{{ lambda }}'
+
+- name: zip package
+  command: "zip -r ../../build/{{ item.name }}.zip ."
+  args:
+    chdir: "workspace/{{ item.name }}/"
+  with_items:
+    - '{{ lambda }}'
+

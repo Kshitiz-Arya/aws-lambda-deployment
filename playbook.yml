@@ -1,0 +1,19 @@
+---
+- name: deploy my_lambda_function
+  hosts: 127.0.0.1
+  connection: local
+      
+  tasks:
+    - name: Include vars
+      include_vars:
+        file: config.yml
+
+    - include: includes/init_workspace.yml
+    - include: includes/build_zip.yml
+    - include: includes/lambda_deploy.yml
+      # with_items:
+      #   # List of the aws regions, where lambda function will be deployed
+      #   - 'ap-northeast-3'
+      #   - 'ap-south-1'
+      # loop_control:
+      #   loop_var: outer_item

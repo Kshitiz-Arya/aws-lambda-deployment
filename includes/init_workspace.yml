@@ -1,0 +1,32 @@
+- name: remove workspace dir
+  file:
+    path: workspace/
+    state: absent
+    force: yes
+
+- name: remove build dir
+  file:
+    path: build/
+    state: absent
+    force: yes
+
+- name: create build dir
+  file:
+    path: build/
+    state: directory
+
+- name: create workspace dir
+  file:
+    path: workspace/{{ item .name}}
+    state: directory
+  with_items:
+    - '{{ lambda }}'
+    
+- name: copy in code
+  synchronize:
+    src: '{{ item.0 }}/'
+    dest: workspace/{{ item.1.name }}
+    delete: yes
+  with_together:
+    - '{{ code_path }}'
+    - '{{ lambda }}'

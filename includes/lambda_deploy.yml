@@ -1,0 +1,12 @@
+- name: Deploying Lambda Function
+  community.aws.lambda:
+    name: '{{ item.0.name }}'
+    state: present
+    zip_file: build/{{ item.0.name }}.zip
+    runtime: '{{ item.0.runtime }}'
+    handler: '{{ item.0.handler }}'
+    role: '{{ item.0.role }}'
+    region: '{{ item.1 }}'
+  with_nested: 
+    - '{{ lambda }}'
+    - '{{ regions }}'
